@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
     public float arrowDestroyDelay = 3f;
 
     public float stickDelay = 0.5f;
-    //private Animator anim;        //22/02/2019 - Just coming back into Unity again after a long time of not doing much, so will leave anim until later
 
+    bool arrowIsCoolingDown = false;
+    bool fired = false;
+    public float arrowCoolDownTime = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +27,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //22/02/2019 - we use GetAxisRaw because it only returns 3 states: positive, negative or zero - which is all we need for the time being.
-        //22/09/2019 (20 mins later) decided to change to GetAxis so I could control the speed at which the character moves to a greater degree.
+        //22/06/2019 - we use GetAxisRaw because it only returns 3 states: positive, negative or zero - which is all we need for the time being.
+        //22/06/2019 (20 mins later) decided to change to GetAxis so I could control the speed at which the character moves to a greater degree.
         Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         rb2d.MovePosition(rb2d.position + movement_vector * Time.deltaTime * move_speed);
 
+        if(fired)
+        {
+            fired = false;
+            StartCoroutine(ArrowCoolDown());
+        }
+
         //firing arrow
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !arrowIsCoolingDown)
         {
             FireArrow(arrow);
         }
@@ -47,8 +55,15 @@ public class Player : MonoBehaviour
         arrow_rigidbody = clone.GetComponent<Rigidbody2D>();
         arrow_rigidbody.AddForce(new Vector2(0, arrowSpeed));
         Destroy(clone, arrowDestroyDelay);
+        fired = true;
+                
+    }
 
-        
+    IEnumerator ArrowCoolDown()
+    {
+        arrowIsCoolingDown = true;
+        yield return new WaitForSeconds(arrowCoolDownTime);
+        arrowIsCoolingDown = false;
     }
 
     IEnumerator SlashStick(GameObject stickSword)
