@@ -5,17 +5,20 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public float defaultDamageValue = 20f;
-    private int damageValues[2] = {20, 40};
+    private int[] damageValues = { 20, 40 };
+    //arrows = damageValues[0] = 20;
+    //stick = damageValues[1] = 40;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Enemy>() != null)
+        if (collision.GetComponent<Enemy>() != null)
         {
             DoDamage(collision);
         }
 
         return;
-        
+
     }
     void DoDamage(Collider2D collision)
     {
@@ -24,11 +27,11 @@ public class Damage : MonoBehaviour
             switch (this.tag)
             {
                 case ("arrow"):
-                    collision.GetComponent<Enemy>().hit_points -= defaultDamageValue;
+                    collision.GetComponent<Enemy>().hit_points -= damageValues[0];
                     Destroy(this.gameObject);
                     break;
                 case ("stick"):
-                    collision.GetComponent<Enemy>().hit_points -= defaultDamageValue;
+                    collision.GetComponent<Enemy>().hit_points -= damageValues[1];
                     break;
                 default:
                     collision.GetComponent<Enemy>().hit_points -= defaultDamageValue;
