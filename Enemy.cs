@@ -10,15 +10,15 @@ public class Enemy : MonoBehaviour
     public Text hit_points_text;
     string hit_points_string;
 
-    float previous_frame_hp;
-
     public bool enemyIsInvincible = false;
-
-    public float enemyInvulnerability = 0.3f;
+    float invincibilityLength = 10f;
+    public bool hit = false;
 
 
     private void Update()
     {
+        Debug.Log("Beginning of frame invincibility state: " + enemyIsInvincible + "\nHit = " + hit);
+
         hit_points_string = hit_points.ToString();
         hit_points_text.text = hit_points_string;
         hit_points_text.transform.position = this.transform.position + new Vector3(0, x_offset, 0);
@@ -29,8 +29,18 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (hit)
+        {
+            hit = false;
+            StartCoroutine(InvincibilityFrames());
+        }
+    }
 
-
-        previous_frame_hp = hit_points;
+    IEnumerator InvincibilityFrames()
+    {
+        enemyIsInvincible = true;
+        yield return new WaitForSeconds(invincibilityLength);
+        //play animation
+        enemyIsInvincible = false;
     }
 }
