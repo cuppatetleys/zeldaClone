@@ -1,0 +1,88 @@
+Devlog Zelda Clone
+
+23/08/2019:
+Managed to use GitHub to edit the code of my Damage Class. Deleted the 'ActiveDamage' Class, cos it was the same thing. Works for now.
+
+Will now lock the framerate of the game in the GameMaster, and then create quite literal "invincibility frames" for the enemy just after it's been hit. I tried
+to literally count the number of frames, but because the framerate chugs when I fire a load of arrows, it makes the point mute. I also need to add a delay between
+firing arrows.
+
+So I managed to get the invincibility on the Enemy class to work. Now to apply the same logic of having the coroutine only able to play ONCE AT AT TIME, and make
+a delay in firing arrows in the Player class.
+
+Employed the same technique as in the Enemy class of having two bools to track whether an action has happened and whether it is cooling down. Worked a treat. 
+INputting in Github. https://answers.unity.com/questions/478155/2d-when-player-gets-hit-make-invulnerable-for-a-fe.html
+
+Nicked code to lock the framerate from this answer on Unity answers (though the documentation is also pretty comprehensive): https://answers.unity.com/questions/1366716/how-to-liimit-fps.html
+
+In case the website goes away, here is the code:
+
+//start
+public class FPSTarget : Monobehaviour
+  {
+      
+      public int target = 30;
+      
+      void Awake()
+      {
+          QualitySettings,vSyncCount = 0;
+          Application.targetFrameRate = target;
+      }
+      
+      void Update()
+      {
+          if(Application.targetFrameRate != target)
+              Application.targetFrameRate = target;
+      }
+  }
+  //end
+
+
+22/08/2019:
+So far today I googled an image of a sprite stick, put it in Piskel and shortened it a bit. I have now put it into aUnity to make it a Prefab and now I've added
+a basic script for attacking. I will change the Player to have a method called SlashStick() that instantiates a stick and runs its animation of stabbing.
+
+I still need to finish the SlashStick() method. I stopped to create invulnerability frames but ended up deleting everything. My intial thought was to have in the
+update function of enemy, a previous_hit_point float to store the hitpoint value of the previous frame, and if that value is greater than the current frame, run a 
+coroutine that makes the enemy invulnerable. Problem with that is that even if the coroutine was being called, the update function was being played continuously
+anyway, so that coroutine was being called so many times that it negated any attempt of mine to contorl the length of the delay - it was always about 4 seconds.
+
+I could try and fight this with a boolean which only calls the coroutine if it is set, otherwise I'll have to explore other options.
+
+21/08/2019:
+Today I've been feeling extremely low in motivation: I'm questioning whether I even like making games in the first place. I was listening to lots of GDC talks
+and questioning myself because there is just SO FUCKING MUCH to do to succeed in this industry, and I can't even fucking build anything worth playing, nevermind
+something polished and market-worthy, and NEVERMIND doing all of that other shit on top of it.
+
+But despite that, I took a break from systems and just did art. I designed the accountant character, made an idle animation in Piskel and then did most of the
+run animation. I'll need to continue the run animation from behind, and then move on to the left and right facing animations.
+
+Assets for Piskel are here: D:\Stuff\0XP\Game Assets\Piskel\Zelda Clone\Player
+
+I then later made a little bit of a tune for the clearing you emerge in at the beginning of the game, with tubas playing a jaunty G major riff. I experimented a
+little with having a kazoo, but the plugin I got for it was wayyyyyy too annoying so I left it. Instead, I made a little piccolo melody that doesn't fit with the 
+original tuba alternation, but is a riff nonetheless.
+
+13/08/2019:
+I messed around with the size of things and temporarily broke everything. I really need to look up version control in Unity.
+
+I found out that if you change the Render Mode of your Canvas to "World Space", you can position text objects with code, which is way more convenient:
+https://www.reddit.com/r/Unity2D/comments/3dl44p/how_in_the_world_do_i_make_text_follow_a/
+
+I then also learned the basics of creating a tilemap in Unity with the Brackey's tutorials: https://www.youtube.com/watch?v=ryISV_nH8qw
+
+I learnt how to adjust the size of the tiles by adjusting the "Pixels Per Unit" in the Inspector of the tileset itself:	https://answers.unity.com/questions/1460391/tilemap-resizing-tiles.html
+
+A guide to learning tilesets is here: https://www.raywenderlich.com/23-introduction-to-the-new-unity-2d-tilemap-system
+The Tileset I'm using is here: https://opengameart.org/content/whispers-of-avalon-grassland-tileset
+
+The text that helped me:
+"I was having the same problem. It looks like you will have to set the 'Pixels Per Unit' on your sprite in the inspector to the same size as the tile's size.
+For example, I made a sprite atlas with 32x32 size sprites and had to set the 'Pixels Per Unit' to 32. By default, that value is 100.
+Hope this helps!"
+
+For next time, I need to:
+- create a tilemap (learn how to use tilemaps)
+- create a spritesheet for the player
+- create an attack script
+- create an attack animation
