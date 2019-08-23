@@ -15,6 +15,10 @@ public class Damage : MonoBehaviour
         if (collision.GetComponent<Enemy>() != null)
         {
             DoDamage(collision);
+            if(this.CompareTag("arrow"))
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         return;
@@ -22,8 +26,10 @@ public class Damage : MonoBehaviour
     }
     void DoDamage(Collider2D collision)
     {
-        if (collision.CompareTag("enemy") && !collision.GetComponent<Enemy>().enemyIsInvincible)
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (collision.CompareTag("enemy") && !enemy.enemyIsInvincible)
         {
+            enemy.hit = true;
             switch (this.tag)
             {
                 case ("arrow"):
