@@ -1,5 +1,17 @@
 Devlog Zelda Clone
 
+24/08/2019:
+Used the video from rm2kdev: https://www.youtube.com/watch?v=XZDjkQ8wEd0&list=PL_4rJ_acBNMH3SExL3yIOzaqj5IP5CJLC&index=4 to make a blend tree for my animations for
+my accountant, so he now moves around in the way I want him to!! Yayyyyy!!! 
+
+Was going to continue with the stick but then realised I would need a whole new set of stick animations, not just instantiate the stick will nilly. That's more work
+but is easier and likely to last longer.
+
+Created new sprites and scripts to warp around using two red doors in the map, but the code needs testing.
+
+TODO:
+TEST WARP CODE.
+
 23/08/2019:
 Managed to use GitHub to edit the code of my Damage Class. Deleted the 'ActiveDamage' Class, cos it was the same thing. Works for now.
 
@@ -37,6 +49,14 @@ public class FPSTarget : Monobehaviour
   }
   //end
 
+I had a problem when importing my spritesheet of my running man into unity - the colours messed up initially. This was because I didn't chnage the format in the
+import settings to 32 bit RBG (as that's what my colours were.) Fixed it. Link to solution: https://answers.unity.com/questions/890245/color-goes-all-weird-after-i-import-an-image.html
+  
+Solution text:
+Have you tried changing the "Format" of the image? At the bottom of the import settings, you can select the max size of the image and in which format it should be saved.
+I assume it states "Compressed"; try changing it to "16 bits", then click "Apply". This should fix the problem. The downside to this solution is that the texture will take up more memory than it would otherwise... but due to the size of the image this should not pose a problem. (Truecolor should give the same result, though it will use even more memory).
+
+Hope this helps solve your issue.
 
 22/08/2019:
 So far today I googled an image of a sprite stick, put it in Piskel and shortened it a bit. I have now put it into aUnity to make it a Prefab and now I've added
