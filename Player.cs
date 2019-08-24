@@ -17,11 +17,13 @@ public class Player : MonoBehaviour
     bool arrowIsCoolingDown = false;
     bool fired = false;
     public float arrowCoolDownTime = 1f;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,17 @@ public class Player : MonoBehaviour
         //22/06/2019 - we use GetAxisRaw because it only returns 3 states: positive, negative or zero - which is all we need for the time being.
         //22/06/2019 (20 mins later) decided to change to GetAxis so I could control the speed at which the character moves to a greater degree.
         Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if(movement_vector != Vector2.zero)
+        {
+            anim.SetBool("isjogging", true);
+            anim.SetFloat("input_x", movement_vector.x);
+            anim.SetFloat("input_y", movement_vector.y);
+        }
+        else
+        {
+            anim.SetBool("isjogging", false);
+        }
 
         rb2d.MovePosition(rb2d.position + movement_vector * Time.deltaTime * move_speed);
 
