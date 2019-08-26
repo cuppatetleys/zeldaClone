@@ -1,5 +1,12 @@
 Devlog Zelda Clone
 
+26/08/2019:
+I learned how to use the Unity timeline, which should prove very useful for making cutscenes. I made a brief cutscene and outlined the architecture for the dialogue,
+voice over and cutscene manager.
+
+The links I used for learning the timeline, aside from the excellent Brackeys one: https://www.youtube.com/watch?v=Y5RDtN1jM6A
+A series for making basically the game I'm making. WIll revisit when I've tried to do it myself: https://www.youtube.com/watch?v=P98iXcpN9YQ&list=PL4vbr3u7UKWp0iM1WIfRjCDTI03u43Zfu&index=2
+
 24/08/2019:
 Used the video from rm2kdev: https://www.youtube.com/watch?v=XZDjkQ8wEd0&list=PL_4rJ_acBNMH3SExL3yIOzaqj5IP5CJLC&index=4 to make a blend tree for my animations for
 my accountant, so he now moves around in the way I want him to!! Yayyyyy!!! 
