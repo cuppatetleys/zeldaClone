@@ -14,18 +14,6 @@ public class Warp : MonoBehaviour
         {
             return;
         }
-        else if (collision.GetComponent<Player>().justWarped)
-        {
-            return;
-        }
-
-        collision.GetComponent<Player>().justWarped = true;
-        collision.GetComponent<Transform>().position = warpTarget.position;
-        
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        collision.GetComponent<Player>().justWarped = false;
+        collision.GetComponent<Transform>().position = warpTarget.position;   
     }
 }
