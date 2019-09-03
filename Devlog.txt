@@ -1,5 +1,26 @@
 Devlog Zelda Clone
 
+03/09/2019:
+I've managed to complete the attack animation, put it into the editor and create a blend tree for it. I've also completely refactored the movement to how the guy does 
+it in the tutorial, cos he's thought it out a lot more than the previous one and I think I'm learning a lot about how to structure things from him.
+
+I also learned how to create a state machine and use it for this game for the first time.
+
+02/09/2019:
+I've decided to fully commit to a) going through all the Zelda clone videos, b) making more in-depth, committed Unity notes so I'm actually learning about the tool
+knowledge that I can use to make games more effectively and c) to read the Unity manual in little sections as part of my CS learning to get the same effect. The
+reason Toby Fox was able to create Undertale was that he was so so so familiar with Game Maker he could fully express himself using that tool, despite its huge
+complexity.
+
+So far I've managed to remove the anti-aliasing issue (just reduce the cell gaps to -0.01) and change the Player's hitbox so it's tiny and he bumps into things
+properly.
+
+I've also successfully created a new TileMap layer and added collisions to it. I then added a 'slippery' Physics Material 2D to the player's Rigidbody 2D that means
+it doesn't dramatically slow movement when rubbing up against walls.
+
+I then created a new Canvas in which I can add a Title card. I learned about a Component called an Outline, which literally just outlines your text and makes it
+a lot more readable in Unity. I then added code to the RoomMove script that not only moves the camera but also displays some text before going away.
+
 27/08/2019:
 I watched more of the tutorial for the Zelda clone and copied the smooth camera movement, the room transitions and the clamping of the camera positions
 
