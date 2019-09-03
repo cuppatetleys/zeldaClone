@@ -11,13 +11,13 @@ public class Enemy : MonoBehaviour
     string hit_points_string;
 
     public bool enemyIsInvincible = false;
-    float invincibilityLength = 10f;
+    public float invincibilityLength = 2f;
     public bool hit = false;
 
 
     private void Update()
     {
-        Debug.Log("Beginning of frame invincibility state: " + enemyIsInvincible + "\nHit = " + hit);
+        //Debug.Log("Beginning of frame invincibility state: " + enemyIsInvincible + "\nHit = " + hit);
 
         hit_points_string = hit_points.ToString();
         hit_points_text.text = hit_points_string;
