@@ -7,7 +7,9 @@ public enum PlayerState
 {
     walk,
     attack,
-    ineract
+    interact,
+    stagger,
+    idle
 }
 
 public class Player : MonoBehaviour
@@ -99,8 +101,6 @@ public class Player : MonoBehaviour
         yield return null;
         anim.SetBool("attacking", false);
         yield return new WaitForSeconds(stickDelay);
-        currentState = PlayerState.walk;
-
         currentState = PlayerState.walk;
     }
     
