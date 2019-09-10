@@ -1,5 +1,20 @@
 Devlog Zelda Clone
 
+10/09/2019:
+I thought I was going to do lots more of the videos and while I did, I got stuck on one of them where I have the dilemma of the hurtbox registering in room
+transitions so they break. I think a solution next session will be to add an Empty object and make a child to the player, then add a hutbox to it. See how
+that goes.
+
+05/09/2019:
+Could make it so that the Warp script inherits from the RoomMove script and therefore you can set the boundaries of where the camera will be transferred to.
+Tried the above but it didn't work as expected. Going to revert to the original and perhaps try again a different method later. or just wait for the tutorial.
+
+04/09/2019:
+I wanted to make a very out of place enemy so I shoce so Bosch and Bacon paintings to make as enemies. Eventually I will learn how to animate individual bits and
+make them collages of separate images, but right now it's fine that they're just a stock image - this will do for now.
+
+I also added an EnemyAI script and a separate "wife" script, as I decided the enemy will be the WIzard's wife, and made it inherit from EnemyAI.
+
 03/09/2019:
 I've managed to complete the attack animation, put it into the editor and create a blend tree for it. I've also completely refactored the movement to how the guy does 
 it in the tutorial, cos he's thought it out a lot more than the previous one and I think I'm learning a lot about how to structure things from him.
