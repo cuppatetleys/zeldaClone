@@ -1,5 +1,29 @@
 Devlog Zelda Clone
 
+17/09/2019:
+I used the signal system to create context clues from video 30 of the tutorial and used created a fade in and fade out between scenes
+that load asynchronously in video 29.
+
+15/09/2019:
+Watched video 26 and it gave a solution to the RoomMove debaucle of last time: simply add a condition to the RoomMove script that says it will change the camera 
+and player if the collider IS NOT A TRIGGER. Fixed it.
+
+12/09/2019:
+Looked at a few of the tutorials, but it seemed that they weren't fit for my current purposes at the moment, so a lot of stuff I watched and was intrigued by
+but ignored. The Scriptable Object system sounds really interesting, I'm just yet to get to a point where it's useful.
+
+11/09/2019:
+I'm up to Part 22 - Enemy Health with Scriptable Objects in the tutorial series and encountered an issue where my RoomMove script no longer worked with the two
+Box colliders attached to the player, it messed it up completely. So I turned it off.
+
+Then I added damage calculation to the knockback script (in hindsight not a great way of doing it, but that's the tutorial's doing) and had to fiddle with it
+cos I decided to diverge into a different method of doing things by that point. I noticed, however, that to the wife object it was calculating the damage twice.
+
+This was because of the earlier issue where I was assigning each object a "collision" collider and "hurtbox" collider, and it was registering them both. I resolved
+this with the wife by creating a new empty object, calling it "collision" and making it a child of her - that resolved the double damage issue. With the player
+I think I'll do the same but assign the "collision" object its own unique tag that will interact with RoomMove so I get the nice room transitions without
+breaking the combat and damage dealing.
+
 10/09/2019:
 I thought I was going to do lots more of the videos and while I did, I got stuck on one of them where I have the dilemma of the hurtbox registering in room
 transitions so they break. I think a solution next session will be to add an Empty object and make a child to the player, then add a hutbox to it. See how
