@@ -30,10 +30,21 @@ public class Player : MonoBehaviour
     Animator anim;
 
     private Vector3 change;
-    
-    
+
+    public VectorValue startingPosition;
+
+    //damage and health
+    public FloatValue playerDamage;
+    public float playerDamageValue;
+    public float playerMaxHealth = 3f;
+    public float playerHealth;
+    public Signal playerHealthSignal;
+
     void Start()
     {
+        transform.position = startingPosition.initialValue;
+        playerHealth = playerMaxHealth;
+        playerDamageValue = playerDamage.initialValue;
         currentState = PlayerState.walk;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -103,6 +114,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(stickDelay);
         currentState = PlayerState.walk;
     }
+    
     
     void FireArrow(GameObject arrow)
     {
