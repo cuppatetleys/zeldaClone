@@ -14,6 +14,7 @@ public class Wife : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
+        enemyDamage = 1f;
         currentState = EnemyState.idle;
         rb2d = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
