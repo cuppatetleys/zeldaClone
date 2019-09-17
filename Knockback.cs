@@ -34,16 +34,42 @@ public class Knockback : MonoBehaviour
 
     private IEnumerator KnockCo(Rigidbody2D hitRB2D, string tag)
     {
+        DoDamage(hitRB2D.gameObject);
         yield return new WaitForSeconds(knockbackTime);
         hitRB2D.velocity = Vector2.zero;
         if(tag == "Player")
         {
             hitRB2D.gameObject.GetComponent<Player>().currentState = PlayerState.walk;
         }
-        else
+        else if (tag == "enemy")
         {
-            hitRB2D.gameObject.GetComponent<EnemyAI>().currentState = EnemyState.idle;
+            hitRB2D.gameObject.GetComponent<EnemyAI>().currentState = EnemyState.walk;
         }
         
+    }
+
+    private void DoDamage(GameObject target)
+    {
+        Player player = FindObjectOfType<Player>();
+        EnemyAI enemy;
+
+        if(target.CompareTag("Player"))
+        {
+            enemy = this.gameObject.GetComponent<EnemyAI>();
+            player.playerHealth -= enemy.enemyDamage;
+            //player.playerHealthSignal.Raise();
+            Debug.Log(player.playerHealth);
+
+        } else if (target.CompareTag("enemy"))
+        {
+            enemy = target.GetComponent<EnemyAI>();
+            enemy.health -= player.playerDamageValue;
+            Debug.Log(enemy.health);
+            if(enemy.health <= 0)
+            {
+                target.SetActive(false);
+            }
+        }
+
     }
 }
